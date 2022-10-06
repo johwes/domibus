@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: domibus
+    app.kubernetes.io/component: domibus
+    app.kubernetes.io/instance: domibus
+    app.kubernetes.io/name: domibus
+    app.kubernetes.io/part-of: domibus-app
+  name: domibus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: domibus
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: domibus
+        deploymentconfig: domibus
+    spec:
+      containers:
+      - env:
+        - name: CATALINA_HOME
+          value: /opt/jws-5.6/tomcat/webapps
+        - name: GC_MAX_METASPACE_SIZE
+          value: "512"
+        - name: GC_METASPACE_SIZE
+          value: "256"
+        image: quay.io/jwesterl/domibus:2.0
+        imagePullPolicy: IfNotPresent
+        name: domibus
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        - containerPort: 8778
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "2"
+            memory: 4000Mi
+          requests:
+            cpu: "1"
+            memory: 4000Mi

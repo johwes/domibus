@@ -1,0 +1,13 @@
+This repo contains information and scripts / artifacts to deploy a test instance of eDelivery component Domibus
+
+If you are interested in learning more head on over here,
+https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/Domibus
+
+To deploy the component, clone this repo, log in to an openshift environment, like the Dev Sandbox (free signup here, https://developers.redhat.com/developer-sandbox )
+Make sure you are in the correct or desired namespace/project.
+
+Then run the script deploy.sh like,
+sh ./deploy.sh
+
+when you are done you can clean up with the following command.
+oc delete all,pvc,secret -l app=domibus
