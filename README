@@ -9,5 +9,7 @@ Make sure you are in the correct or desired namespace/project.
 Then run the script deploy.sh like,
 sh ./deploy.sh
 
+The script should output a route where you can access the application, it takes a couple of seconds for it to become ready.
+
 when you are done you can clean up with the following command.
 oc delete all,pvc,secret -l app=domibus
