@@ -1,6 +1,6 @@
 
 FROM registry.access.redhat.com/ubi8 as builder
-ARG GS_VERSION=5.0.1
+ARG GS_VERSION=4.2.7
 ARG WAR_URL=https://ec.europa.eu/cefdigital/artifact/content/repositories/public/eu/domibus/domibus-distribution/${GS_VERSION}/domibus-distribution-${GS_VERSION}-tomcat-full.zip
 ARG CONF_URL=https://ec.europa.eu/cefdigital/artifact/content/repositories/public/eu/domibus/domibus-distribution/${GS_VERSION}/domibus-distribution-${GS_VERSION}-sample-configuration-and-testing.zip
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 POD=""
-
+VERSION=4.2.7
 
 oc new-app mysql-persistent -p MYSQL_USER=edelivery -p MYSQL_PASSWORD=edelivery -p MYSQL_ROOT_PASSWORD=edelivery -p MYSQL_DATABASE=domibus -p DATABASE_SERVICE_NAME=mysql -l app=domibus --name mysql
 
@@ -34,8 +34,8 @@ done
 
 #configure database
 oc rsh $POD mysql -h $POD -u root --password=edelivery -e "alter database domibus charset=utf8mb4 collate=utf8mb4_bin;"
-oc rsh $POD mysql -h $POD -u root --password=edelivery domibus < ./dbfiles/mysql-4.2.7.ddl
-oc rsh $POD mysql -h $POD -u root --password=edelivery domibus < ./dbfiles/mysql-4.2.7-data.ddl
+oc rsh $POD mysql -h $POD -u root --password=edelivery domibus < ./dbfiles/mysql-$VERSION.ddl
+oc rsh $POD mysql -h $POD -u root --password=edelivery domibus < ./dbfiles/mysql-$VERSION-data.ddl
 
 #deploy domibus on jws
 for x in $(ls k8s/*.yaml) ; do oc apply -f $x ; done

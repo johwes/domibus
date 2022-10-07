@@ -32,7 +32,7 @@ spec:
           value: "512"
         - name: GC_METASPACE_SIZE
           value: "256"
-        image: quay.io/jwesterl/domibus:5.0.1
+        image: quay.io/jwesterl/domibus:4.2.7
         imagePullPolicy: IfNotPresent
         name: domibus
         ports:
